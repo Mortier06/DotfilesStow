@@ -1,0 +1,219 @@
+{
+"hyprland/workspaces": {
+	"format": " {icon} ",
+	"show-special": false,
+	"active-only": false,
+	"on-click": "activate",
+	"sort-by-number": true,
+	"persistent-workspaces": {
+		"1": [],
+		"2": [],
+		"3": [],
+		"4": [],
+	},
+	"format-icons": {
+		"1": " ",
+		"2": " ",
+		"3": " ",
+		"4": "",
+		"5": "5",
+		"6": "6",
+		"7": "7",
+		"8": "8",
+		"9": "9",
+		"10": "10",
+		"focused": "",
+		"default": "",
+	},
+},
+
+"group/status": {
+	"orientation": "horizontal",
+	"modules": [
+    "group/networkdata",
+		"pulseaudio",
+    "battery"
+	]
+},
+
+"group/info": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 300,
+      "transition-left-to-right": false,
+    },
+    "modules": ["custom/arrow-right", "cpu", "memory", "temperature"],
+  },
+"group/hub": {
+    "orientation": "inherit",
+    "modules": ["clock"],
+  },
+  
+  "group/networkdata": {
+      "orientation": "inherit",
+      "modules": ["bluetooth", "network"],
+    },
+
+
+"battery": {
+	"full-at": 100,
+	"states": {
+		"good": 95,
+		"warning": 30,
+		"critical": 15
+	},
+	"format": "{icon} {capacity}",
+	"format-charging": "  {capacity}%",
+	"format-plugged": "󱘖  {capacity}%",
+	"format-full": "{icon} Full",
+	"format-alt": "{icon} {time}",
+	"format-icons": [
+		"󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
+	],
+  "tooltip": false,
+},
+
+"mpris": {
+    "format": "{status_icon} {artist} - {title}",
+    "player": "playerctld",
+    "max-length": 50,
+    "on-click": "playerctl play-pause",
+    "format-paused": "{status_icon} {artist} - {title}",
+    "status-icons": {
+      "paused": "▶",
+      "playing": "⏸"
+    }
+  },
+
+"pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-bluetooth": "{icon}  󰂰 {volume}%",
+    "format-muted": "󰖁",
+    "on-click": "omarchy-launch-or-focus-tui wiremix",
+    "format-icons": {
+    "headphone": "",
+    "hands-free": "",
+    "headset": "",
+    "phone": "",
+    "portable": "",
+    "car": "",
+      },
+    "tooltip": false,
+    "tooltip-format-muted": "Muted ({volume}%)",
+    "scroll-step": 5,
+    "format-icons": {
+      "default": [
+      "",
+      "",
+      "󰕾",
+      ""
+    ]
+    }
+  },
+
+"custom/menu": {
+    "format": "",
+    "on-click": "omarchy-menu",
+    "on-click-right": "walker",
+    "tooltip": false,
+  },
+
+"custom/power": {
+    "format": "󰐥",
+    "on-click": "systemctl poweroff",
+    "on-click-right": "hyprlock",
+    "tooltip": false,
+},
+
+"custom/notifications": {
+    "tooltip": true,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "󱅫",
+      "none": "󰂜",
+      "dnd-notification": "󰂠",
+      "dnd-none": "󰪓",
+      "inhibited-notification": "󰂛",
+      "inhibited-none": "󰪑",
+      "dnd-inhibited-notification": "󰂛",
+      "dnd-inhibited-none": "󰪑"
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+"custom/separator#dot-line": {
+	"format": "",
+	"interval": "once",
+	"tooltip": false
+},
+
+  "custom/arrow-right": {
+    "format": "󰁙",
+    "tooltip": false,
+  },
+   "custom/arrow-left": {
+      "format": "󰁒",
+      "tooltip": false,
+    },
+  "cpu": {
+    "format": "󰘚 {usage}󱉸",
+    "tooltip": false,
+  },
+  "memory": {
+	  "interval": 10,
+	  "format": "{percentage}% 󰾆",
+    "tooltip": false,
+},
+  
+  "network": {
+    "format-icons": [
+      "󰤯",
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ],
+    "format": "{icon}",
+    "format-wifi": "{icon}",
+    "format-ethernet": "{ifname} 󰀂",
+    "format-disconnected": "󰖪",
+    "tooltip-format-wifi": "{essid} ({frequency} GHz)\nIP: {ipaddr}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "IP: {ipaddr}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-disconnected": "Disconnected",
+    "interval": 3,
+    "nospacing": 1,
+    "on-click": "kitty --class=Impala -e impala",
+    "on-click-right": "nm-connection-editor"
+  },
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "󰂲",
+    "format-connected": "",
+    "tooltip-format": "Devices connected: {num_connections}",
+    "on-click": "omarchy-launch-bluetooth"
+  },
+  
+"clock": {
+	"interval": 1,
+	"format": "{:%I:%M %p}",
+	"format-alt": "  {:%I:%M %p |   %Y, %d %B, %A}",
+	"tooltip-format": "<tt><small>{calendar}</small></tt>",
+	"calendar": {
+		"mode": "year",
+		"mode-mon-col": 3,
+		"weeks-pos": "right",
+		"on-scroll": 1,
+		"format": {
+			"months": "<span color='#ffead3'><b>{}</b></span>",
+			"days": "<span color='#ecc6d9'><b>{}</b></span>",
+			"weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+			"weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+			"today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+		}
+	}
+},
+}
