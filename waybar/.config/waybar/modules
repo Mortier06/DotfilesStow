@@ -186,8 +186,7 @@
     "tooltip-format-disconnected": "Disconnected",
     "interval": 3,
     "nospacing": 1,
-    "on-click": "ghostty --class=Impala -e impala",
-    "on-click-right": "nm-connection-editor"
+    "on-click": "omarchy-launch-wifi",
   },
   "bluetooth": {
     "format": "",
